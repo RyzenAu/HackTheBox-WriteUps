@@ -35,4 +35,10 @@ Nmap done: 1 IP address (1 host up) scanned in 13.09 seconds
 ```
 Found port 80 and port 22 open
 
+# 10.10.11.253 
+added to /etc/hosts
 
+
+![perfection](image.png)
+
+Enter any input but need to make sure the weights 
