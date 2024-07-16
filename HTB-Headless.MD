@@ -1,6 +1,6 @@
 ## Phase 1: Reconnaissance ### Nmap Scan Reconnaissance is the initial step where we gather information about the target system. 
 shell nmap -sCV 10.10.11.8
-
+```markdown
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-03-26 02:27 EDT
 Nmap scan report for headless.htb (10.10.11.8)
 Host is up (0.16s latency).
@@ -53,7 +53,7 @@ PORT     STATE SERVICE VERSION
 |     </body>
 |_    </html>
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
+```
 ### Explanation:
 
 - Port 22 is open, indicating an SSH service running OpenSSH 9.2p1.
