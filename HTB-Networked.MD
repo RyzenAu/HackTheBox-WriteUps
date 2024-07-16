@@ -15,6 +15,7 @@ Output:
 
 Port 22: SSH (OpenSSH 7.4)
 Port 80: HTTP (Apache 2.4.6 with PHP 5.4.16)
+```
 Phase 2: Web Enumeration
 Gobuster Scan: We used Gobuster to identify directories.
 
