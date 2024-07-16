@@ -1,4 +1,6 @@
-#  HTB: Networked Detailed Exploitation  ## Quick Summary  Networked is an Easy difficulty Linux box with vulnerabilities in file upload, leading to code execution, and command injection via a user script, which can be leveraged to execute commands as root.  ## Phase 1: Reconnaissance  **Nmap Scan:** The initial scan identified open ports and services.  ```plaintext nmap -sV -sT -sC -o nmapinitial networked.htb`
+#  HTB: Networked Detailed Exploitation  
+## Quick Summary  Networked is an Easy difficulty Linux box with vulnerabilities in file upload, leading to code execution, and command injection via a user script, which can be leveraged to execute commands as root.  
+## Phase 1: Reconnaissance  **Nmap Scan:** The initial scan identified open ports and services.  ```plaintext nmap -sV -sT -sC -o nmapinitial networked.htb`
 
 **Output:**
 
